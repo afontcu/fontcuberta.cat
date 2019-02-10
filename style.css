@@ -16,6 +16,7 @@ body,p {
   --color3: #f7b733;
   --color5: #cacf85;
   --color4: #8cba80;
+  --hand-rotation: 15;
 }
 
 h1 {
@@ -129,6 +130,19 @@ a:hover {
   letter-spacing: -1px;
 }
 
+
+.hand {
+  transform: rotate(calc(var(--hand-rotation) * -1deg));
+  position: absolute;
+  margin-left: 0.5rem;
+  animation-name: wink;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(.61,.01,.5,.97);
+  animation-delay: 3s;
+}
+
 @media screen and (min-width:900px) {
   body {
     height: 100vh;
@@ -225,5 +239,21 @@ a:hover {
 
   100% {
     transform: translate3d(0,0,0);
+  }
+}
+
+
+@keyframes wink {
+  0% {
+    transform: rotate(calc(var(--hand-rotation) * -1deg));
+  }
+  10% {
+    transform: rotate(calc(var(--hand-rotation) * 1deg));
+  }
+  20% {
+    transform: rotate(calc(var(--hand-rotation) * -1deg));
+  }
+  30%, 100% {
+    transform: rotate(calc(var(--hand-rotation) * 1deg));
   }
 }
