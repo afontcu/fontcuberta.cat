@@ -25,8 +25,8 @@ h1 {
 body {
   overflow-x: hidden;
   font-size: calc(18px + 1.14vw);
-  font-family: 'Work Sans',-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
-  font-weight: 300;
+  font-family: "Work Sans",-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+  font-weight: 200;
   grid-template-areas: "strip-1" "strip-2" "strip-3" "strip-4" "strip-5";
 }
 
@@ -55,12 +55,12 @@ a:hover {
   position: relative;
   padding: 1em 1em 1.6em;
   text-align: center;
+  animation-name: slideLeft;
 }
 
 .strip:nth-child(1) {
   background-color: var(--color1);
   transform: translate3d(-100%,0,0);
-  animation-name: strip1;
   animation-delay: .1s;
   grid-area: strip-1;
 }
@@ -68,7 +68,6 @@ a:hover {
 .strip:nth-child(2) {
   background-color: var(--color2);
   transform: translate3d(0,100%,0);
-  animation-name: strip2;
   animation-delay: .2s;
   grid-area: strip-2;
 }
@@ -76,7 +75,6 @@ a:hover {
 .strip:nth-child(3) {
   background-color: var(--color3);
   transform: translate3d(0,-100%,0);
-  animation-name: strip3;
   animation-delay: .3s;
   grid-area: strip-3;
 }
@@ -84,7 +82,6 @@ a:hover {
 .strip:nth-child(4) {
   background-color: var(--color4);
   transform: translate3d(0,100%,0);
-  animation-name: strip4;
   animation-delay: .4s;
   grid-area: strip-4;
 }
@@ -92,7 +89,6 @@ a:hover {
 .strip:nth-child(5) {
   background-color: var(--color5);
   transform: translate3d(100%,0,0);
-  animation-name: strip5;
   animation-delay: .5s;
   grid-area: strip-5;
 }
@@ -103,7 +99,7 @@ a:hover {
   position: absolute;
   width: 6px;
   height: 100vh;
-  animation-name: stripLine;
+  animation-name: expandHeight;
 }
 
 .strip:nth-child(2)::before {
@@ -136,19 +132,39 @@ a:hover {
 @media screen and (min-width:900px) {
   body {
     height: 100vh;
-    grid-template-columns: 1fr 1.3fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: "strip-1 strip-2 strip-3" "strip-4 strip-2 strip-5";
+    grid-template-columns: 1fr 1.3fr 1.3fr 1.3fr 1fr 1fr;
+    grid-template-rows: 1.5fr 1fr;
+    grid-template-areas: "strip-1 strip-1 strip-2 strip-2 strip-3 strip-3" "strip-4 strip-4 strip-4 strip-5 strip-5 strip-5";
   }
 
   .strip {
     padding: .4em 1em 0;
   }
+
+  .strip:nth-child(1) {
+    animation-name: slideRight;
+  }
+
+  .strip:nth-child(2) {
+    animation-name: slideDown;
+  }
+
+  .strip:nth-child(3) {
+    animation-name: slideDown;
+  }
+
+  .strip:nth-child(4) {
+    animation-name: slideUp;
+  }
+
+  .strip:nth-child(5) {
+    animation-name: slideLeft;
+  }
 }
 
 @media screen and (min-width:1400px) {
   body {
-    grid-template-columns: .9fr 1.618fr 1.2fr 1.5fr 1.2fr;
+    grid-template-columns: 1fr 1.618fr 1.3fr 1.3fr 1.25fr;
     grid-template-areas: "strip-1 strip-2 strip-3 strip-4 strip-5";
   }
 
@@ -162,7 +178,7 @@ a:hover {
   }
 }
 
-@-webkit-keyframes stripLine {
+@keyframes expandHeight {
   0% {
     height: 0;
   }
@@ -172,17 +188,7 @@ a:hover {
   }
 }
 
-@keyframes stripLine {
-  0% {
-    height: 0;
-  }
-
-  100% {
-    height: 100%;
-  }
-}
-
-@keyframes strip1 {
+@keyframes slideRight {
   0% {
     transform: translate3d(-100%,0,0);
   }
@@ -192,17 +198,7 @@ a:hover {
   }
 }
 
-@keyframes strip2 {
-  0% {
-    transform: translate3d(0,100%,0);
-  }
-
-  100% {
-    transform: translate3d(0,0,0);
-  }
-}
-
-@keyframes strip3 {
+@keyframes slideDown {
   0% {
     transform: translate3d(0,-100%,0);
   }
@@ -212,7 +208,7 @@ a:hover {
   }
 }
 
-@keyframes strip4 {
+@keyframes slideUp {
   0% {
     transform: translate3d(0,100%,0);
   }
@@ -222,7 +218,7 @@ a:hover {
   }
 }
 
-@keyframes strip5 {
+@keyframes slideLeft {
   0% {
     transform: translate3d(100%,0,0);
   }
